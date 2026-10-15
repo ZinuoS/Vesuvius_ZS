@@ -29,6 +29,7 @@ VC3D build afdb836-2026-10-14, streaming from s3://vesuvius-challenge-open-data.
 | lockin.py | rev - k*fwd test (dead) | python3 lockin.py |
 | holonomy.py | mesh Gaussian curvature / loop holonomy + grid-stretch baseline | python3 holonomy.py patches/X --L 6 |
 | tetratic.py | tetratic order |psi4| + regularised disclination charge on a render | python3 tetratic.py renders/X_mid.png |
+| textness.py | line-rhythm test on an ink map: projection-profile ACF prominence at 3-8 mm vs block-shuffle null; rot90 asymmetry | python3 textness.py --w087 CX CY [--theta 6 --line-band 5 7.5]; --calib |
 Outputs: patches/ (tifxyz), renders/ (zarr + PNGs; figures start with _), predictions/ (+scan/, hecate/), logs/.
 
 ## 2. Experiments, in order (14 Oct)
@@ -61,9 +62,21 @@ E13 Tetratic order |psi4| = |<e^{4 i theta}>| per 128-px tile (structure tensor,
 E14 Disclination charge: raw winding of 4theta = noise (70-85% tiles nonzero). Regularised (smooth z4 over 16 px, count only
     tiles with |psi4|>=0.25): 5452 3.9% nonzero, 3532 12.7%, 4144 32%, w087 19-23%. Usable.
 E15 Is low psi4 an ink signature? corr(|psi4|, team ink) = +0.05 on both w087 crops, CI straddles 0. NO.
+E16 Textness (line rhythm) of ink maps, textness.py. Statistic: rotate map, project along lines inside a disc, unbiased ACF,
+    prominence c(L) - [c(L/2)+c(3L/2)]/2 maximised over orientation and L in 3-8 mm; null = block shuffle in 1 mm tiles.
+    Calibration on the team w087 map: full map z +16.7 (lines at 0 deg, spacing 6.3 mm); central 48 mm z +13.2; 32 mm z +5.2;
+    16 mm z +1.9. The test needs >= 32 mm of render; our 16 mm control crops are at the floor.
+    Constrained test (theta 6 +- 9 deg, L in 5-7.5 mm, null 200): team crop1 z +6.1, crop2 z +4.8. ink_9um S2 rev: crop1 z +0.8,
+    crop2 z +1.8 (p .055). S2 fwd (dead side): crop1 z +2.9 (p .01), crop2 z -2.1 -> z ~ 3 occurs on noise at 16 mm; one-crop
+    hits mean nothing. Hecate rev/fwd/s32: z < 1.2. rot90 asymmetry (sector-averaged): team 0.13-0.31, ours 0.13-0.24, no separation.
+    Reading: our maps do not carry the line rhythm the team map carries. Bar for a future model: z > 3 at the known orientation
+    on >= 32 mm, replicated on both sides' difference (rev - fwd). Figures: docs/figures/_textness_*.png; docs/textness_scores.tsv.
+    Lesson in the code: raw periodogram |P1-P2|/(P1+P2) -> 0.5 for noise (exponential bins); sector-average first. And never
+    window before projecting: a Hann envelope gives ACF ~0.5 at every lag.
 
 ## 3. Open items
 - Surface-mask fraction at level 2 and ct-min 10/40 (robustness of the 66% number).
 - Depth-profile fit + per-tile surface re-localisation (idea 1).
+- Textness on a >= 32 mm render once the GPU runs (inference on the full w087 segment, then rev - fwd rhythm at theta 0).
 - Publish: GitHub repo (MIT), Discord show-and-tell, PRs to villa (MPS ink install notes; qa.py; tetratic QA).
 - Write-up for the 31 Oct progress-prize form.

@@ -32,6 +32,18 @@ S2 +0.036 [-0.001,+0.073]; S4 +0.028; S8 +0.007; S0 -0.021; S10 -0.077 [-0.125,-
 Crop 2 S2-S6 +0.026 [-0.023,+0.073]; pooled +0.031 [+0.000,+0.062].
 Reading: small direction-replicated gain at S2; robust cliff when window moves away from inked face; wrong side dead at all depths.
 
+## 5. Textness: line rhythm of ink maps (textness.py)
+Projection-profile ACF prominence at the line spacing, block-shuffle null (z). Team w087 map, free orientation: full z +16.7
+(6.3 mm, 0 deg), 48 mm z +13.2, 32 mm z +5.2, 16 mm z +1.9. Constrained (theta 6, L 5-7.5 mm) on the 16 mm control crops:
+| map              | crop 1 z | crop 2 z |
+|------------------|----------|----------|
+| team             | +6.1     | +4.8     |
+| ink_9um S2 rev   | +0.8     | +1.8     |
+| ink_9um S2 fwd   | +2.9     | -2.1     |
+| Hecate rev / s32 | +1.2 / +0.6 | not run |
+Reading: the statistic detects text on the team map and needs >= 32 mm of field; our 16 mm maps show no rhythm and the dead
+side can reach z 3 by chance. Not a detector yet; a bar for the fine-tuned model.
+
 ## Where things are
 patches/      grown meshes (tifxyz)           renders/   surface volumes + _mid/_max/_sheet/_qa PNGs (not in git); comparison figures in docs/figures/
 predictions/  ink_9um maps (+ scan/, hecate/) logs/      every run's log with timings
