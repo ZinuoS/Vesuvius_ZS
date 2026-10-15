@@ -5,7 +5,7 @@ that runs on a MacBook Air (Apple Silicon, no CUDA), with GPU inference and fine
 Engaging cluster. Target: the First Letters prize on 1447, or a progress-prize submission (deadline 31 Oct 2026)
 documenting the end-to-end run and its failure modes.
 
-Zinuo Shi, Wellesley College. Started 14 Oct 2026.
+Zinuo Shi, Wellesley College. Last Updated 14 Oct 2026.
 
 ## Status (14 Oct 2026)
 - Pipeline works end to end: seed -> `vc_grow_seg_from_seed` -> `vc_render_tifxyz` -> composites -> cross-section QA -> ink inference on MPS.
