@@ -26,6 +26,12 @@ Home quotas are usually small. Check  df -h $HOME  and, if there is a scratch/po
     export VESUVIUS_HOME=/path/to/scratch/vesuvius
 before setup_env.sh and in each sbatch (or edit the default at the top of the scripts).
 
+## 48 mm w087 render for the textness test (E16)
+    ./render_w087_48mm.sh          # Mac, 10-20 min, 1.3 GB zarr
+    ./orcd/queue_w087.sh push      # rsync + sbatch ink_infer (S=2, both directions); prints the job id
+    ./orcd/queue_w087.sh status
+    ./orcd/queue_w087.sh fetch     # pulls the maps back and runs textness.py on rev, fwd and the team window
+
 ## Next on the cluster (after the smoke test)
 - Hecate at full overlap on the 172 control crops (hecate_infer.sbatch) -> fair model comparison.
 - Fine-tuning: villa/ink-detection training (the September "lighter ink training tutorial" downloads ~2.4 GB instead of 92 GB).
