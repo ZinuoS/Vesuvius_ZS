@@ -1,0 +1,18 @@
+# large or regenerable data (scripts rebuild all of it)
+renders/
+predictions/
+checkpoints/
+control172/
+hecate/
+
+# environments and upstream clones
+.inkenv/
+villa/
+__pycache__/
+
+# scratch
+_to_delete/
+.params.json
+Reload
+.DS_Store
+*.bundle

@@ -1,0 +1,68 @@
+16/729 patches
+416/729 patches
+Traceback (most recent call last):
+  File "/Users/zinuoshi/Desktop/Projects/vesuvius/hecate/hecate.py", line 473, in <module>
+    main()
+    ~~~~^^
+  File "/Users/zinuoshi/Desktop/Projects/vesuvius/hecate/hecate.py", line 430, in main
+    predict(model,volume,result,args.reverse,args.stride,args.batch_size,args.precision)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zinuoshi/Desktop/Projects/vesuvius/.inkenv/lib/python3.14/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+  File "/Users/zinuoshi/Desktop/Projects/vesuvius/hecate/hecate.py", line 357, in predict
+    logits = model.forward_3d(image) if three_d else model(image, valid)
+                                                     ~~~~~^^^^^^^^^^^^^^
+  File "/Users/zinuoshi/Desktop/Projects/vesuvius/.inkenv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/zinuoshi/Desktop/Projects/vesuvius/.inkenv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/zinuoshi/Desktop/Projects/vesuvius/hecate/hecate.py", line 251, in forward
+    features, logits = self.features_logits(image)
+                       ~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/zinuoshi/Desktop/Projects/vesuvius/hecate/hecate.py", line 233, in features_logits
+    features, _ = self.canonical.forward_features(image[:, :, self.margin:d-self.margin])
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zinuoshi/Desktop/Projects/vesuvius/hecate/hecate.py", line 200, in forward_features
+    return self.decoder.forward_features(self.encode(x))
+                                         ~~~~~~~~~~~^^^
+  File "/Users/zinuoshi/Desktop/Projects/vesuvius/hecate/hecate.py", line 197, in encode
+    return self.backbone(x)
+           ~~~~~~~~~~~~~^^^
+  File "/Users/zinuoshi/Desktop/Projects/vesuvius/.inkenv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/zinuoshi/Desktop/Projects/vesuvius/.inkenv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/zinuoshi/Desktop/Projects/vesuvius/hecate/hecate.py", line 105, in forward
+    x3 = self.layer3(x2)
+  File "/Users/zinuoshi/Desktop/Projects/vesuvius/.inkenv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/zinuoshi/Desktop/Projects/vesuvius/.inkenv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/zinuoshi/Desktop/Projects/vesuvius/.inkenv/lib/python3.14/site-packages/torch/nn/modules/container.py", line 259, in forward
+    input = module(input)
+  File "/Users/zinuoshi/Desktop/Projects/vesuvius/.inkenv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/zinuoshi/Desktop/Projects/vesuvius/.inkenv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/zinuoshi/Desktop/Projects/vesuvius/hecate/hecate.py", line 43, in forward
+    out = self.conv1(x)
+  File "/Users/zinuoshi/Desktop/Projects/vesuvius/.inkenv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/zinuoshi/Desktop/Projects/vesuvius/.inkenv/lib/python3.14/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/zinuoshi/Desktop/Projects/vesuvius/.inkenv/lib/python3.14/site-packages/torch/nn/modules/conv.py", line 735, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/zinuoshi/Desktop/Projects/vesuvius/.inkenv/lib/python3.14/site-packages/torch/nn/modules/conv.py", line 730, in _conv_forward
+    return F.conv3d(
+           ~~~~~~~~^
+        input, weight, bias, self.stride, self.padding, self.dilation, self.groups
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+KeyboardInterrupt

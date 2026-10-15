@@ -1,0 +1,196 @@
+build: afdb836-2026-10-14
+== seed_1404_4996_22732  Wed Oct 14 16:22:18 EDT 2026
+zarr dataset size for scale group 0 [24297, 8343, 8343]
+chunk shape shape [192, 192, 192]
+mode: seed
+step size: 20
+min_area_cm: 0.3
+voxelsize: 8.64
+tgt_overlap_count: 20
+seed location [1404, 4996, 22732] value is 255
+Loaded normal grid level 0 (coordinate_scale=1, output_spiral_step=20)
+GrowPatch loss weights:
+  DIST: 1 STRAIGHT: 0.2 DIRECTION: 1 SNAP: 0.1 NORMAL: 10 NORMAL3DLINE: 0 REFERENCE_RAY: 0 SURFACE_SDT: 0 SPACELINE: 0 SDIR: 1
+empty space tracing
+seed val [1404, 4996, 22732] 255
+search & optimization ...lets go! 
+lets start fringe: 4
+gen 2 processing 12 fringe cands (total done 0 fringe: 4)
+cands 12
+-> done 12 | fringe 12 | area 0.36 mm^2 (0.000000 m^2) | avg speed 0.01 mm^2/s (0.001259 m^2/day) | current speed 0.01 mm^2/s
+gen 3 processing 20 fringe cands (total done 12 fringe: 12)
+cands 20
+-> done 32 | fringe 20 | area 0.96 mm^2 (0.000001 m^2) | avg speed 0.03 mm^2/s (0.002499 m^2/day) | current speed 0.07 mm^2/s
+gen 4 processing 28 fringe cands (total done 32 fringe: 20)
+cands 28
+-> done 60 | fringe 28 | area 1.79 mm^2 (0.000002 m^2) | avg speed 0.04 mm^2/s (0.003515 m^2/day) | current speed 0.08 mm^2/s
+gen 5 processing 36 fringe cands (total done 60 fringe: 28)
+cands 36
+-> done 96 | fringe 36 | area 2.87 mm^2 (0.000003 m^2) | avg speed 0.05 mm^2/s (0.004304 m^2/day) | current speed 0.08 mm^2/s
+gen 6 processing 44 fringe cands (total done 96 fringe: 36)
+cands 44
+-> done 140 | fringe 44 | area 4.18 mm^2 (0.000004 m^2) | avg speed 0.06 mm^2/s (0.004940 m^2/day) | current speed 0.08 mm^2/s
+gen 7 processing 52 fringe cands (total done 140 fringe: 44)
+cands 52
+-> done 192 | fringe 52 | area 5.73 mm^2 (0.000006 m^2) | avg speed 0.07 mm^2/s (0.006148 m^2/day) | current speed 0.21 mm^2/s
+gen 8 processing 60 fringe cands (total done 192 fringe: 52)
+cands 60
+local solve radius 45 Ceres Solver Report: Iterations: 22, Initial cost: 2.190035e+01, Final cost: 2.180777e+01, Termination: CONVERGENCE
+-> done 252 | fringe 60 | area 7.52 mm^2 (0.000008 m^2) | avg speed 0.08 mm^2/s (0.006812 m^2/day) | current speed 0.12 mm^2/s
+gen 9 processing 68 fringe cands (total done 252 fringe: 60)
+cands 68
+[GridStore Cache] Hitrate Warning Triggered: Hits: 562090, Misses: 6000, Total: 568090, Hit Rate: 98.94%
+-> done 320 | fringe 68 | area 9.56 mm^2 (0.000010 m^2) | avg speed 0.09 mm^2/s (0.007739 m^2/day) | current speed 0.18 mm^2/s
+gen 10 processing 76 fringe cands (total done 320 fringe: 68)
+cands 76
+-> done 396 | fringe 76 | area 11.82 mm^2 (0.000012 m^2) | avg speed 0.10 mm^2/s (0.008599 m^2/day) | current speed 0.19 mm^2/s
+gen 11 processing 84 fringe cands (total done 396 fringe: 76)
+cands 84
+-> done 480 | fringe 84 | area 14.33 mm^2 (0.000014 m^2) | avg speed 0.11 mm^2/s (0.009074 m^2/day) | current speed 0.14 mm^2/s
+gen 12 processing 92 fringe cands (total done 480 fringe: 84)
+cands 92
+-> done 572 | fringe 92 | area 17.08 mm^2 (0.000017 m^2) | avg speed 0.11 mm^2/s (0.009692 m^2/day) | current speed 0.17 mm^2/s
+gen 13 processing 100 fringe cands (total done 572 fringe: 92)
+cands 100
+-> done 672 | fringe 100 | area 20.07 mm^2 (0.000020 m^2) | avg speed 0.12 mm^2/s (0.010607 m^2/day) | current speed 0.27 mm^2/s
+gen 14 processing 108 fringe cands (total done 672 fringe: 100)
+cands 108
+-> done 780 | fringe 108 | area 23.29 mm^2 (0.000023 m^2) | avg speed 0.13 mm^2/s (0.011556 m^2/day) | current speed 0.30 mm^2/s
+gen 15 processing 116 fringe cands (total done 780 fringe: 108)
+cands 116
+-> done 896 | fringe 116 | area 26.75 mm^2 (0.000027 m^2) | avg speed 0.15 mm^2/s (0.012675 m^2/day) | current speed 0.42 mm^2/s
+gen 16 processing 124 fringe cands (total done 896 fringe: 116)
+cands 124
+-> done 1020 | fringe 124 | area 30.46 mm^2 (0.000030 m^2) | avg speed 0.16 mm^2/s (0.013520 m^2/day) | current speed 0.30 mm^2/s
+gen 17 processing 132 fringe cands (total done 1020 fringe: 124)
+cands 132
+-> done 1152 | fringe 132 | area 34.40 mm^2 (0.000034 m^2) | avg speed 0.17 mm^2/s (0.014300 m^2/day) | current speed 0.30 mm^2/s
+gen 18 processing 140 fringe cands (total done 1152 fringe: 132)
+cands 140
+-> done 1292 | fringe 140 | area 38.58 mm^2 (0.000039 m^2) | avg speed 0.18 mm^2/s (0.015206 m^2/day) | current speed 0.37 mm^2/s
+gen 19 processing 148 fringe cands (total done 1292 fringe: 140)
+cands 148
+-> done 1440 | fringe 148 | area 43.00 mm^2 (0.000043 m^2) | avg speed 0.18 mm^2/s (0.015623 m^2/day) | current speed 0.24 mm^2/s
+gen 20 processing 156 fringe cands (total done 1440 fringe: 148)
+cands 156
+-> done 1596 | fringe 156 | area 47.66 mm^2 (0.000048 m^2) | avg speed 0.18 mm^2/s (0.015941 m^2/day) | current speed 0.23 mm^2/s
+gen 21 processing 164 fringe cands (total done 1596 fringe: 156)
+cands 164
+-> done 1760 | fringe 164 | area 52.55 mm^2 (0.000053 m^2) | avg speed 0.18 mm^2/s (0.015545 m^2/day) | current speed 0.14 mm^2/s
+gen 22 processing 172 fringe cands (total done 1760 fringe: 164)
+cands 172
+[GridStore Cache] Hitrate Warning Triggered: Hits: 6272376, Misses: 64000, Total: 6336376, Hit Rate: 98.99%
+-> done 1932 | fringe 172 | area 57.69 mm^2 (0.000058 m^2) | avg speed 0.18 mm^2/s (0.015897 m^2/day) | current speed 0.24 mm^2/s
+gen 23 processing 180 fringe cands (total done 1932 fringe: 172)
+cands 180
+-> done 2112 | fringe 180 | area 63.06 mm^2 (0.000063 m^2) | avg speed 0.19 mm^2/s (0.016006 m^2/day) | current speed 0.20 mm^2/s
+gen 24 processing 188 fringe cands (total done 2112 fringe: 180)
+cands 188
+-> done 2300 | fringe 188 | area 68.68 mm^2 (0.000069 m^2) | avg speed 0.19 mm^2/s (0.016834 m^2/day) | current speed 0.47 mm^2/s
+gen 25 processing 196 fringe cands (total done 2300 fringe: 188)
+cands 196
+[GridStore Cache] Hitrate Warning Triggered: Hits: 8382967, Misses: 85000, Total: 8467967, Hit Rate: 99.00%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 9035892, Misses: 93000, Total: 9128892, Hit Rate: 98.98%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 9278136, Misses: 96000, Total: 9374136, Hit Rate: 98.98%
+-> done 2496 | fringe 196 | area 74.53 mm^2 (0.000075 m^2) | avg speed 0.20 mm^2/s (0.017552 m^2/day) | current speed 0.41 mm^2/s
+gen 26 processing 204 fringe cands (total done 2496 fringe: 196)
+cands 204
+[GridStore Cache] Hitrate Warning Triggered: Hits: 9555804, Misses: 99000, Total: 9654804, Hit Rate: 98.97%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 9707896, Misses: 100000, Total: 9807896, Hit Rate: 98.98%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 9850911, Misses: 101000, Total: 9951911, Hit Rate: 98.99%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 9978070, Misses: 102000, Total: 10080070, Hit Rate: 98.99%
+-> done 2700 | fringe 204 | area 80.62 mm^2 (0.000081 m^2) | avg speed 0.21 mm^2/s (0.018308 m^2/day) | current speed 0.45 mm^2/s
+gen 27 processing 212 fringe cands (total done 2700 fringe: 204)
+cands 212
+[GridStore Cache] Hitrate Warning Triggered: Hits: 10116512, Misses: 103000, Total: 10219512, Hit Rate: 98.99%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 10276537, Misses: 104000, Total: 10380537, Hit Rate: 99.00%
+-> done 2912 | fringe 212 | area 86.95 mm^2 (0.000087 m^2) | avg speed 0.22 mm^2/s (0.018672 m^2/day) | current speed 0.29 mm^2/s
+gen 28 processing 220 fringe cands (total done 2912 fringe: 212)
+cands 220
+[GridStore Cache] Hitrate Warning Triggered: Hits: 11620183, Misses: 120000, Total: 11740183, Hit Rate: 98.98%
+-> done 3132 | fringe 220 | area 93.52 mm^2 (0.000094 m^2) | avg speed 0.22 mm^2/s (0.018824 m^2/day) | current speed 0.24 mm^2/s
+gen 29 processing 228 fringe cands (total done 3132 fringe: 220)
+cands 228
+[GridStore Cache] Hitrate Warning Triggered: Hits: 11952819, Misses: 126000, Total: 12078819, Hit Rate: 98.96%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 12149856, Misses: 127000, Total: 12276856, Hit Rate: 98.97%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 12257757, Misses: 128000, Total: 12385757, Hit Rate: 98.97%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 12474919, Misses: 130000, Total: 12604919, Hit Rate: 98.97%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 12897266, Misses: 137000, Total: 13034266, Hit Rate: 98.95%
+-> done 3360 | fringe 228 | area 100.33 mm^2 (0.000100 m^2) | avg speed 0.23 mm^2/s (0.019557 m^2/day) | current speed 0.49 mm^2/s
+gen 30 processing 236 fringe cands (total done 3360 fringe: 228)
+cands 236
+[GridStore Cache] Hitrate Warning Triggered: Hits: 13316143, Misses: 143000, Total: 13459143, Hit Rate: 98.94%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 13516481, Misses: 144000, Total: 13660481, Hit Rate: 98.95%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 13657826, Misses: 145000, Total: 13802826, Hit Rate: 98.95%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 13779922, Misses: 146000, Total: 13925922, Hit Rate: 98.95%
+-> done 3596 | fringe 236 | area 107.38 mm^2 (0.000107 m^2) | avg speed 0.24 mm^2/s (0.020414 m^2/day) | current speed 0.63 mm^2/s
+gen 31 processing 244 fringe cands (total done 3596 fringe: 236)
+cands 244
+[GridStore Cache] Hitrate Warning Triggered: Hits: 13974106, Misses: 147000, Total: 14121106, Hit Rate: 98.96%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 14114517, Misses: 148000, Total: 14262517, Hit Rate: 98.96%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 14402149, Misses: 150000, Total: 14552149, Hit Rate: 98.97%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 14494056, Misses: 151000, Total: 14645056, Hit Rate: 98.97%
+-> done 3840 | fringe 244 | area 114.66 mm^2 (0.000115 m^2) | avg speed 0.25 mm^2/s (0.021286 m^2/day) | current speed 0.67 mm^2/s
+gen 32 processing 252 fringe cands (total done 3840 fringe: 244)
+cands 252
+[GridStore Cache] Hitrate Warning Triggered: Hits: 14794077, Misses: 153000, Total: 14947077, Hit Rate: 98.98%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 14941181, Misses: 154000, Total: 15095181, Hit Rate: 98.98%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 15266902, Misses: 155000, Total: 15421902, Hit Rate: 98.99%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 15475376, Misses: 157000, Total: 15632376, Hit Rate: 99.00%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 15732440, Misses: 159000, Total: 15891440, Hit Rate: 99.00%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 15980177, Misses: 167000, Total: 16147177, Hit Rate: 98.97%
+-> done 4092 | fringe 252 | area 122.19 mm^2 (0.000122 m^2) | avg speed 0.25 mm^2/s (0.021820 m^2/day) | current speed 0.41 mm^2/s
+gen 33 processing 260 fringe cands (total done 4092 fringe: 252)
+cands 260
+[GridStore Cache] Hitrate Warning Triggered: Hits: 16429247, Misses: 175000, Total: 16604247, Hit Rate: 98.95%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 16796846, Misses: 177000, Total: 16973846, Hit Rate: 98.96%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 16887450, Misses: 178000, Total: 17065450, Hit Rate: 98.96%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 17160842, Misses: 180000, Total: 17340842, Hit Rate: 98.96%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 17405868, Misses: 186000, Total: 17591868, Hit Rate: 98.94%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 17623946, Misses: 191000, Total: 17814946, Hit Rate: 98.93%
+-> done 4352 | fringe 260 | area 129.95 mm^2 (0.000130 m^2) | avg speed 0.26 mm^2/s (0.022209 m^2/day) | current speed 0.36 mm^2/s
+gen 34 processing 268 fringe cands (total done 4352 fringe: 260)
+cands 268
+[GridStore Cache] Hitrate Warning Triggered: Hits: 18179039, Misses: 196000, Total: 18375039, Hit Rate: 98.93%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 18593124, Misses: 198000, Total: 18791124, Hit Rate: 98.95%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 18695949, Misses: 199000, Total: 18894949, Hit Rate: 98.95%
+[GridStore Cache] Hitrate Warning Triggered: Hits: 18848193, Misses: 200000, Total: 19048193, Hit Rate: 98.95%
+-> done 4620 | fringe 268 | area 137.95 mm^2 (0.000138 m^2) | avg speed 0.26 mm^2/s (0.022515 m^2/day) | current speed 0.34 mm^2/s
+generated surface 1810217.165364 vx^2 (1.351320 cm^2)
+saving patches/auto_grown_20261014162221443
+   grown -> patches/seed_1404_4996_22732  (534s)
+  tile-row 1/12 (8%)  3.9 chunks/s  0m03s  eta 0m33s  tile-row 2/12 (16%)  4.9 chunks/s  0m04s  eta 0m24s  tile-row 3/12 (25%)  5.3 chunks/s  0m06s  eta 0m20s  tile-row 4/12 (33%)  5.7 chunks/s  0m08s  eta 0m16s  tile-row 5/12 (41%)  6.2 chunks/s  0m09s  eta 0m13s  tile-row 6/12 (50%)  6.4 chunks/s  0m11s  eta 0m11s  tile-row 7/12 (58%)  6.8 chunks/s  0m12s  eta 0m08s  tile-row 8/12 (66%)  6.8 chunks/s  0m14s  eta 0m07s  tile-row 9/12 (75%)  7.0 chunks/s  0m15s  eta 0m05s  tile-row 11/12 (91%)  7.3 chunks/s  0m18s  eta 0m01s  tile-row 12/12 (100%)  8.0 chunks/s  0m18s  eta 0m00s
+Remote zarr streaming: https://vesuvius-challenge-open-data.s3.us-east-1.amazonaws.com/PHerc1447/volumes/20250521151220-8.640um-1.2m-116keV-masked.zarr
+zarr dataset size for group 0 [24297 8343 8343 ]
+Source dtype: uint8
+chunk shape [128 128 128 ]
+Voxel size (remote volume metadata): 8.64 micrometer
+Rendering: patches/seed_1404_4996_22732 -> renders/seed_1404_4996_22732.zarr (zarr)
+ds_level=0 ds_scale=1 sA=1 Pg=1 render_scale=1
+rendering 1440x1440 at scale 1 crop [1440×1440 from (0,0)]
+seed_1404_4996_22732.zarr: 28 layers, 1440x1440 px  ->  _max / _mid / _sheet .png
+   done in 557s
+== seed_2604_5748_24252  Wed Oct 14 16:31:35 EDT 2026
+zarr dataset size for scale group 0 [24297, 8343, 8343]
+chunk shape shape [192, 192, 192]
+mode: seed
+step size: 20
+min_area_cm: 0.3
+voxelsize: 8.64
+tgt_overlap_count: 20
+seed location [2604, 5748, 24252] value is 255
+Loaded normal grid level 0 (coordinate_scale=1, output_spiral_step=20)
+GrowPatch loss weights:
+  DIST: 1 STRAIGHT: 0.2 DIRECTION: 1 SNAP: 0.1 NORMAL: 10 NORMAL3DLINE: 0 REFERENCE_RAY: 0 SURFACE_SDT: 0 SPACELINE: 0 SDIR: 1
+empty space tracing
+seed val [2604, 5748, 24252] 255
+search & optimization ...lets go! 
+lets start fringe: 4
+gen 2 processing 12 fringe cands (total done 0 fringe: 4)
+cands 12
+-> done 12 | fringe 12 | area 0.36 mm^2 (0.000000 m^2) | avg speed 0.01 mm^2/s (0.000614 m^2/day) | current speed 0.01 mm^2/s
+gen 3 processing 20 fringe cands (total done 12 fringe: 12)
+cands 20
+-> done 32 | fringe 20 | area 0.96 mm^2 (0.000001 m^2) | avg speed 0.02 mm^2/s (0.001420 m^2/day) | current speed 0.08 mm^2/s
+gen 4 processing 28 fringe cands (total done 32 fringe: 20)
+cands 28

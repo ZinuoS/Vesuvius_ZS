@@ -27,11 +27,10 @@ Zinuo Shi, Wellesley College. Started 14 Oct 2026.
     *.sh *.py            pipeline scripts, flat at the root; each is documented in docs/notebook.md section 1
     patches/             grown meshes (tifxyz, ~90 KB each)
     logs/                every run's log with timings
-    control172/          PHerc.172 w087 mesh and the team's ink map (fetch172.sh)
-    predictions/         ink maps: PNG previews tracked, TIFs not
 
-Not in the repo (regenerate with the scripts): `renders/` (surface volumes, 1.3 GB), prediction TIFs, model
-checkpoints (`setup_ink.sh`, `hecate_setup.sh`), the `.inkenv` virtualenv and the sparse `villa/` clone.
+Not in the repo (regenerate with the scripts): `renders/` (surface volumes, 1.3 GB), `predictions/` (ink maps),
+`control172/` (`fetch172.sh`), model checkpoints and `hecate/` (`setup_ink.sh`, `hecate_setup.sh`), the `.inkenv`
+virtualenv and the sparse `villa/` clone.
 
 ## Quick start (Mac)
     ./setup_ink.sh                      # once: uv venv, villa sparse clone, ink_9um checkpoint

@@ -1,0 +1,41 @@
+{
+    "area_cm2": 1.3513199804690867,
+    "area_vx2": 1810217.1653643558,
+    "bbox": [
+        [
+            735.4309692382813,
+            4276.56005859375,
+            22231.0546875
+        ],
+        [
+            2133.9931640625,
+            5700.29931640625,
+            23094.892578125
+        ]
+    ],
+    "elapsed_time_s": 4462609.762564416,
+    "format": "tifxyz",
+    "max_gen": 35,
+    "scale": [
+        0.05000000074505806,
+        0.05000000074505806
+    ],
+    "seed": [
+        1404.0,
+        4996.0,
+        22732.0
+    ],
+    "source": "vc_grow_seg_from_seed",
+    "target_volume": "20250521151220-surface-20260413222639-surface-m7-L0-th0.2.zarr",
+    "type": "seg",
+    "uuid": "55f2f5f5-36e6-49c2-aea2-a8d94537caaa",
+    "vc_gsfs_mode": "explicit_seed",
+    "vc_gsfs_params": {
+        "cache_size": 2000000000,
+        "generations": 35,
+        "mode": "seed",
+        "normal_grid_path": "/Users/zinuoshi/.VC3D/remote_cache/normal_grids/PHerc1447/20250521151220/L0-e4a080c371dfd9e6",
+        "thread_limit": 4
+    },
+    "vc_gsfs_version": "dev"
+}

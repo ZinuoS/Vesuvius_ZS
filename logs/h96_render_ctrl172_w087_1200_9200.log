@@ -1,0 +1,9 @@
+  tile-row 4/14 (28%)  48.8 chunks/s  0m01s  eta 0m02s  tile-row 9/14 (64%)  55.1 chunks/s  0m02s  eta 0m01s  tile-row 14/14 (100%)  58.6 chunks/s  0m03s  eta 0m00s
+Remote zarr streaming: https://vesuvius-challenge-open-data.s3.us-east-1.amazonaws.com/PHerc0172/volumes/20241024131838-7.910um-53keV-masked.zarr
+zarr dataset size for group 0 [21000 6700 9100 ]
+Source dtype: uint8
+chunk shape [128 128 128 ]
+Voxel size (remote volume metadata): 7.91 micrometer
+Rendering: control172/w087.tifxyz -> renders/h96_ctrl172_w087_1200_9200.zarr (zarr)
+ds_level=0 ds_scale=1 sA=1 Pg=0.82396 render_scale=0.82396
+rendering 1687x1687 at scale 0.82396 crop [1687×1687 from (988,7580)]
