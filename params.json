@@ -1,0 +1,7 @@
+{
+  "mode": "seed",
+  "cache_size": 2000000000,
+  "generations": 35,
+  "thread_limit": 4,
+  "normal_grid_path": "NORMAL_GRIDS_PLACEHOLDER"
+}

@@ -1,0 +1,2 @@
+villa @ 5432721
+torch 2.14.1 | mps: True
