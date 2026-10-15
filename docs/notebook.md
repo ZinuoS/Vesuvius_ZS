@@ -48,8 +48,7 @@ E9  Depth-window scan (crop 1, rev): S0 .341 S2 .398 S4 .391 S6 .363 S8 .370 S10
     2000 resamples): S2-S6 +0.036 [-0.001,+0.073]; S10 -0.077 [-0.125,-0.032]; S11 -0.115 [-0.171,-0.059].
     Crop 2: S2 .266 S4 .251 S6 .240; S2-S6 +0.026 [-0.023,+0.073]; pooled +0.031 [+0.000,+0.062].
     Reading: small direction-replicated gain at S2 (adopted); robust cliff away from the inked face; wrong side dead at all depths.
-E10 Hecate 9.6um (stride 64, crop 1): rev 0.240/0.706, fwd 0.102/0.602; tiling seams visible (docs/figures/_hecate_fwd_vs_team.png).
-    Stride-32 rev run in progress (fair test; bar 0.398/0.746).
+E10 Hecate 9.6um (stride 64, crop 1): rev 0.240/0.706, fwd 0.102/0.602; tiling seams visible (docs/figures/_hecate_fwd_vs_team.png). Stride 32 (full overlap) rev: 0.211 / AUC 0.717 -- seams gone but output is sparse specks; does not beat ink_9um S2 (0.398/0.746). Verdict: ink_9um window S2 stays default (docs/figures/_model_compare_172.png).
 E11 Lock-in rev - k*fwd (k fit cross-crop, 0.04-0.17): no change (<0.01). Two-sided veto hurts (0.398->0.312): fwd carries a weak
     ink copy. One-sidedness is global, not pixel-wise. DEAD.
 E12 Mesh holonomy (angle deficit, 1 mm loops): ranks patches correctly (4144 cleanest, 3532 worst) but corr 0.6-0.84 with plain
@@ -64,7 +63,6 @@ E14 Disclination charge: raw winding of 4theta = noise (70-85% tiles nonzero). R
 E15 Is low psi4 an ink signature? corr(|psi4|, team ink) = +0.05 on both w087 crops, CI straddles 0. NO.
 
 ## 3. Open items
-- Hecate stride-32 score (crop 1 rev). Then decide model.
 - Surface-mask fraction at level 2 and ct-min 10/40 (robustness of the 66% number).
 - Depth-profile fit + per-tile surface re-localisation (idea 1).
 - Publish: GitHub repo (MIT), Discord show-and-tell, PRs to villa (MPS ink install notes; qa.py; tetratic QA).

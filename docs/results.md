@@ -24,7 +24,7 @@ PHerc1447 patches 5452, 3532, and the text site 4144/2742/12557: no strokes, no 
 | ink_9um default (S6)       | 0.363 / 0.053  (AUC .727/.566) | 0.240 / 0.021              |
 | ink_9um S2 window          | 0.398 / 0.102  (AUC .746)      | 0.266 / -0.007             |
 | Hecate 9.6um, stride 64    | 0.240 / 0.102  (AUC .706/.602) | not run                    |
-| Hecate 9.6um, stride 32    | running                        |                            |
+| Hecate 9.6um, stride 32    | 0.211 rev (AUC .717)           | not run                    |
 (corr = Pearson vs team map at 1/8 scale; reverse = inked side)
 
 ## 4. Depth-window scan (crop 5440,5120, reverse), block bootstrap vs S6
