@@ -1,0 +1,61 @@
+% Developability, order and holonomy: geometric quality checks for virtually unrolled Herculaneum papyri
+% Zinuo Shi, Wellesley College. Working draft; sections live in sections/ so the document can grow.
+% Build: latexmk -pdf main.tex   (figures are read from ../docs/figures)
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\graphicspath{{../docs/figures/}{figures/}}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\sisetup{detect-all,range-phrase=--,range-units=single}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{caption}
+\captionsetup{font=small,labelfont=bf}
+\usepackage{enumitem}
+\setlist{nosep,leftmargin=*}
+\usepackage[colorlinks=true,linkcolor=NavyBlue,citecolor=NavyBlue,urlcolor=NavyBlue]{hyperref}
+\usepackage[capitalise,noabbrev]{cleveref}
+\usepackage{microtype}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\newcommand{\todo}[1]{\textcolor{BrickRed}{[TODO: #1]}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\um}{\si{\micro\metre}}
+\newcommand{\psifour}{\psi_4}
+\DeclareMathOperator{\corr}{corr}
+\DeclareMathOperator{\AUC}{AUC}
+\DeclareMathOperator{\atantwo}{atan2}
+
+\title{Developability, order and holonomy:\\ geometric quality checks for virtually unrolled Herculaneum papyri}
+\author{Zinuo Shi\\ \small Wellesley College \quad \href{https://github.com/ZinuoS/Vesuvius_ZS}{github.com/ZinuoS/Vesuvius\_ZS}}
+\date{Working draft, 14 October 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\input{sections/00_abstract}
+\end{abstract}
+
+\input{sections/01_introduction}
+\input{sections/02_pipeline}
+\input{sections/03_holonomy}
+\input{sections/04_tetratic}
+\input{sections/05_ink}
+\input{sections/06_discussion}
+\input{sections/07_reproducibility}
+
+\bibliographystyle{plain}
+\begin{thebibliography}{9}
+\input{sections/99_references}
+\end{thebibliography}
+
+\appendix
+\input{sections/A_derivations}
+
+\end{document}

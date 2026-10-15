@@ -1,0 +1,73 @@
+\section{Developability and holonomy}
+\label{sec:holonomy}
+
+\subsection{Physical motivation}
+A vector parallel-transported around a closed loop on a curved surface comes back rotated. The rotation angle is the holonomy of the loop, and on a two-dimensional surface it is fixed by the Gaussian curvature enclosed:
+\begin{equation}
+\Phi(\partial D) = \iint_D K\,\mathrm{d}A \pmod{2\pi}.
+\label{eq:holonomy}
+\end{equation}
+This single identity underlies the Foucault pendulum (the swing plane precesses by $2\pi\sin\varphi$ per day, the solid angle of the polar cap above latitude $\varphi$ on the unit sphere, $K=1$), the geometric phase of a spin, and Thomas precession, where the loop is drawn on the hyperboloid of velocities ($K=-1$) and the precession per orbit is the enclosed hyperbolic area \cite{rhodes2004}. The physics is always the same: the loop samples the curvature it encloses.
+
+A sheet of papyrus is a developable surface. It was manufactured flat and, however it was rolled, crushed and carbonised, the rolling is to good approximation an isometry: the sheet bends but does not stretch. Developable means $K=0$ everywhere, so by \cref{eq:holonomy} every loop on it has zero holonomy. The hope was that a mesh which leaves one winding for the next would have to curve to do so, acquire $K\neq0$ in the transition, and announce the switch through a non-zero holonomy that a purely metric check could not see. The hope was wrong, for a reason given in \cref{sec:holonomy-why}, but the test is cheap, exact and worth stating.
+
+\subsection{Discrete formulation on a quad mesh}
+The tracer writes a quad mesh as three images $X,Y,Z$ of shape $H\times W$: vertex $(i,j)$ sits at $\mathbf{v}_{ij}=(X_{ij},Y_{ij},Z_{ij})$ in voxel coordinates, with nominal grid step $s$ voxels (from \code{meta.json}, $s=1/\text{scale}$). At an interior vertex $\mathbf{v}$ with four neighbours $\mathbf{n}_1,\dots,\mathbf{n}_4$ in cyclic order (up, right, down, left), define the umbrella angles and the angle deficit
+\begin{equation}
+\theta_k=\arccos\frac{(\mathbf{n}_k-\mathbf{v})\cdot(\mathbf{n}_{k+1}-\mathbf{v})}{|\mathbf{n}_k-\mathbf{v}|\,|\mathbf{n}_{k+1}-\mathbf{v}|},
+\qquad
+\delta(\mathbf{v})=2\pi-\sum_{k=1}^{4}\theta_k .
+\label{eq:deficit}
+\end{equation}
+On a flat sheet the four angles sum to $2\pi$ and $\delta=0$. On a smooth surface sampled at step $s$ the deficit equals the curvature integrated over the vertex's dual cell,
+\begin{equation}
+\delta(\mathbf{v})=\iint_{A_{\mathbf{v}}}K\,\mathrm{d}A+O(s^{3}),
+\label{eq:deficit-K}
+\end{equation}
+which is the discrete Gauss--Bonnet theorem for piecewise-flat surfaces \cite{meyer2003}; the derivation for the umbrella is in \cref{app:gaussbonnet}. Summing \cref{eq:deficit-K} over the vertices enclosed by a loop recovers \cref{eq:holonomy}. We take loops to be the boundaries of $L\times L$ blocks of cells and define the loop holonomy
+\begin{equation}
+\Phi_L(a,b)=\sum_{\mathbf{v}\in \text{block}(a,b)}\delta(\mathbf{v}),
+\label{eq:loop}
+\end{equation}
+with $L=6$, so each loop encloses $6s$ voxels $\approx\SI{1}{mm}$ on a side at \SI{8.64}{\um} and the \code{scale} of these meshes. A vertex with any invalid neighbour (zero coordinates) is excluded, and a block containing an excluded vertex is dropped.
+
+\paragraph{Baseline.} The existing metric check is parametrisation stretch. With edge lengths $e^{x}_{ij}=|\mathbf{v}_{i,j+1}-\mathbf{v}_{ij}|/s$ and $e^{y}_{ij}=|\mathbf{v}_{i+1,j}-\mathbf{v}_{ij}|/s$, an isometric parametrisation has $e\equiv1$, and we report per block
+\begin{equation}
+\sigma_L(a,b)=\max_{\text{block}}\bigl|\log e\bigr| .
+\label{eq:stretch}
+\end{equation}
+Stretch is sensitive to the tracer's parametrisation; holonomy, by \cref{eq:holonomy}, is invariant under reparametrisation and sees only the embedded surface. The two should therefore disagree exactly where the geometry, rather than the parametrisation, is wrong.
+
+\subsection{Result}
+\code{holonomy.py} computes \cref{eq:deficit,eq:loop,eq:stretch} for a patch in under a second and writes a three-panel figure (flattened mid layer, $|\Phi_6|$, $\sigma_6$). Across the patches of \cref{tab:seeds}:
+\begin{itemize}
+\item $|\Phi_6|$ ranks the patches in the order the eye does: the announced text site 4144 is cleanest, 3532 worst. \todo{insert median / p90 / p99 of $|\Phi_6|$ in degrees per patch from \code{holonomy.py}}
+\item Over blocks, $\corr(|\Phi_6|,\sigma_6)$ lies between 0.60 and 0.84 per patch. Most of what holonomy flags, stretch already flags.
+\item $|\Phi_6|$ is \emph{blind} to the sheet switch in the lower left of 3532 (\cref{fig:contact}). The blocks over the switch are no more curved than the clean weave beside them.
+\end{itemize}
+Holonomy is retired as a sheet-switch detector and kept as a finding. The reason is instructive.
+
+\subsection{Why intrinsic curvature cannot see a sheet switch}
+\label{sec:holonomy-why}
+Let $S_0$ be a developable surface, the winding the tracer started on, with unit normal $\mathbf{n}$. The next winding $S_t$ is, locally, an offset surface $S_0+t\,\mathbf{n}$ at the interstitial gap $t$ (of order \SIrange{50}{150}{\um} in these scrolls). The curvature of an offset surface follows from the shape operator: if $\kappa_1,\kappa_2$ are the principal curvatures of $S_0$, those of $S_t$ are $\kappa_i/(1-t\kappa_i)$, hence
+\begin{equation}
+K_t=\frac{K}{1-2Ht+Kt^{2}}, \qquad H=\tfrac12(\kappa_1+\kappa_2).
+\label{eq:offset}
+\end{equation}
+With $K=0$ the numerator vanishes and $K_t=0$: every offset of a developable surface is developable. The windings form a one-parameter family of flat surfaces, and nothing intrinsic distinguishes them.
+
+Now let the tracer drift between them. Its output is a smooth embedding $\mathbf{f}=S_0+h\,\mathbf{n}$ with a displacement field $h(u,v)$ that rises from $0$ to $t$ across a transition region. Work in the tangent frame of $S_0$ where, since $S_0$ is flat, the problem reduces locally to the graph of $h$ over the plane, with
+\begin{equation}
+K_h=\frac{h_{uu}h_{vv}-h_{uv}^{2}}{\bigl(1+h_u^{2}+h_v^{2}\bigr)^{2}} .
+\label{eq:graph}
+\end{equation}
+A tracer that crosses the gap along a front, $h=h(u)$ only, has $h_{vv}=h_{uv}=0$ and $K_h\equiv0$: the ramp between the sheets is a generalised cylinder, developable, with zero holonomy around every loop. Only a ramp that bends in both directions carries curvature, and its size is set by the gap and the transition length $\ell$: $h_{uu}\sim h_{vv}\sim t/\ell^{2}$, so $K_h\sim t^{2}/\ell^{4}$ and the holonomy of an $\ell\times\ell$ loop is
+\begin{equation}
+\Phi\sim K_h\,\ell^{2}\sim\Bigl(\frac{t}{\ell}\Bigr)^{2}\approx\Bigl(\frac{0.1\,\text{mm}}{1\,\text{mm}}\Bigr)^{2}=10^{-2}\ \text{rad}\approx0.6^{\circ},
+\label{eq:estimate}
+\end{equation}
+below the deficit noise of a mesh whose vertices are placed to a voxel. The switch is a change in \emph{which} sheet the surface follows, a property of the CT scalar field along $\mathbf{n}$. It is extrinsic. Holonomy, by \cref{eq:holonomy}, measures the intrinsic metric and is the wrong instrument by construction. The right instrument has to look at what is painted on the surface, which is the subject of \cref{sec:tetratic}, or at the intensity profile along the normal, which is the per-tile re-localisation proposed in \cref{sec:discussion}.
+
+\begin{remark}
+The same argument explains why stretch and holonomy correlate at all: where the tracer's parametrisation is distorted, the vertices are also noisy, and noisy vertices produce spurious deficits. Holonomy on these meshes is a noise meter for vertex placement, not a curvature meter. A smoothed mesh would decorrelate the two but would not create the missing signal.
+\end{remark}

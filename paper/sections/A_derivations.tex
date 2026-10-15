@@ -1,0 +1,65 @@
+\section{Derivations}
+\label{app:derivations}
+
+\subsection{Holonomy equals enclosed curvature}
+\label{app:holonomy}
+Let $D\subset S$ be simply connected with piecewise-smooth boundary $\gamma=\partial D$, and let $(\mathbf e_1,\mathbf e_2)$ be a smooth orthonormal tangent frame on $D$. The Levi-Civita connection is encoded by the one-form $\omega$ with $\nabla\mathbf e_1=\omega\,\mathbf e_2$, $\nabla\mathbf e_2=-\omega\,\mathbf e_1$, and the Gauss curvature is its exterior derivative, $K\,\mathrm{d}A=\mathrm{d}\omega$ (the structure equation; see \cite{docarmo}). A tangent vector $\mathbf w=\cos\alpha\,\mathbf e_1+\sin\alpha\,\mathbf e_2$ is parallel along $\gamma$ when $\nabla_{\dot\gamma}\mathbf w=0$, that is
+\[
+\dot\alpha\,(-\sin\alpha\,\mathbf e_1+\cos\alpha\,\mathbf e_2)+\omega(\dot\gamma)\,(\cos\alpha\,\mathbf e_2-\sin\alpha\,\mathbf e_1)=0
+\quad\Longrightarrow\quad \dot\alpha=-\omega(\dot\gamma).
+\]
+Integrating once around and using Stokes,
+\[
+\Phi=\alpha(\text{end})-\alpha(\text{start})=-\oint_{\gamma}\omega=-\iint_{D}\mathrm{d}\omega=-\iint_{D}K\,\mathrm{d}A ,
+\]
+which is \cref{eq:holonomy} up to the orientation convention. The frame drops out, as it must.
+
+\subsection{The umbrella deficit is the holonomy of a cone}
+\label{app:gaussbonnet}
+Replace the four quads around an interior vertex $\mathbf v$ by the four flat triangles $(\mathbf v,\mathbf n_k,\mathbf n_{k+1})$. Their union is a cone with apex $\mathbf v$ and total apex angle $A=\sum_k\theta_k$. Cut the cone along one edge and develop it into the plane: it becomes a sector of angle $A$. Parallel transport inside the sector is ordinary translation. Transport a vector around a small loop encircling the apex: it leaves the sector across one cut edge and re-enters across the other, and the two edges are identified by a rotation of $2\pi-A$. The vector therefore returns rotated by exactly
+\[
+\Phi_{\text{cone}}=2\pi-\sum_k\theta_k=\delta(\mathbf v),
+\]
+with all the curvature concentrated at the apex. This is \cref{eq:deficit} and it is exact for the piecewise-flat surface. For a loop enclosing several vertices of a piecewise-flat surface the holonomies add (the flat faces contribute nothing), which is \cref{eq:loop}.
+
+Consistency with the smooth surface: for a geodesic triangle on $S$ with angles $\alpha,\beta,\gamma$, Gauss--Bonnet gives $\alpha+\beta+\gamma-\pi=\iint K\,\mathrm{d}A$. Applying this to the four geodesic triangles of the umbrella, summing, and using that the angles at the neighbours $\mathbf n_k$ of adjacent triangles are supplementary to leading order, one finds $\sum_k\theta_k=2\pi-\iint_{A_{\mathbf v}}K\,\mathrm{d}A+O(s^{3})$, where $A_{\mathbf v}$ is the union of the four triangles weighted to the dual cell. The chordal angles of \cref{eq:deficit} differ from the geodesic ones at $O(s^{2}\kappa^{2})$, which is absorbed in the error term. This is the content of \cite{meyer2003} specialised to valence four.
+
+\subsection{Curvature of an offset surface}
+\label{app:offset}
+Let $\mathbf r(u,v)$ parametrise $S_0$ with unit normal $\mathbf n$ and shape operator $\mathcal S$ defined by $\mathrm{d}\mathbf n=-\mathcal S\,\mathrm{d}\mathbf r$ (Weingarten). The offset $\mathbf r_t=\mathbf r+t\,\mathbf n$ has
+\[
+\mathrm{d}\mathbf r_t=\mathrm{d}\mathbf r+t\,\mathrm{d}\mathbf n=(\mathbf 1-t\mathcal S)\,\mathrm{d}\mathbf r ,
+\]
+so the tangent plane, and hence the normal, is unchanged, and the Weingarten map of $S_t$ satisfies $\mathrm{d}\mathbf n=-\mathcal S\,\mathrm{d}\mathbf r=-\mathcal S(\mathbf 1-t\mathcal S)^{-1}\mathrm{d}\mathbf r_t$, i.e.\ $\mathcal S_t=\mathcal S(\mathbf 1-t\mathcal S)^{-1}$. In the principal frame $\mathcal S=\operatorname{diag}(\kappa_1,\kappa_2)$ this gives $\kappa_{i,t}=\kappa_i/(1-t\kappa_i)$ and
+\[
+K_t=\det\mathcal S_t=\frac{\kappa_1\kappa_2}{(1-t\kappa_1)(1-t\kappa_2)}=\frac{K}{1-2Ht+Kt^{2}},
+\]
+which is \cref{eq:offset}. For $K=0$ the offset is developable at every $t$ for which the denominator is non-zero, i.e.\ short of the focal distance $1/\kappa_1$.
+
+\subsection{Gauss curvature of a graph}
+\label{app:graph}
+For $\mathbf r=(u,v,h(u,v))$, the first fundamental form is $E=1+h_u^{2}$, $F=h_uh_v$, $G=1+h_v^{2}$, the normal is $\mathbf n=(-h_u,-h_v,1)/W$ with $W=\sqrt{1+h_u^{2}+h_v^{2}}$, and the second fundamental form is $L=h_{uu}/W$, $M=h_{uv}/W$, $N=h_{vv}/W$. Then
+\[
+K=\frac{LN-M^{2}}{EG-F^{2}}=\frac{h_{uu}h_{vv}-h_{uv}^{2}}{W^{4}} ,
+\]
+which is \cref{eq:graph}. If $h$ depends on $u$ alone the numerator vanishes identically.
+
+\subsection{Structure tensor: eigenvalues, orientation, coherence}
+\label{app:st}
+For the symmetric matrix $\mathbf J$ of \cref{eq:J}, the characteristic equation $\lambda^{2}-(J_{xx}+J_{yy})\lambda+(J_{xx}J_{yy}-J_{xy}^{2})=0$ has roots $\lambda_\pm$ as in \cref{eq:theta}. Writing the dominant eigenvector as $(\cos\theta,\sin\theta)$ and substituting into $(\mathbf J-\lambda_+\mathbf 1)\mathbf e=0$ gives $\tan2\theta=2J_{xy}/(J_{xx}-J_{yy})$, and the two-argument arctangent in \cref{eq:theta} selects the correct quadrant of $2\theta$. Since $\lambda_+-\lambda_-=\sqrt{(J_{xx}-J_{yy})^{2}+4J_{xy}^{2}}$ and $\lambda_++\lambda_-=J_{xx}+J_{yy}$, the coherence of \cref{eq:coherence} is the normalised anisotropy of $\mathbf J$: 1 for a perfect one-dimensional texture, 0 for isotropic gradients \cite{bigun1987}.
+
+\subsection{Tetratic order of a mixture}
+\label{app:mixture}
+Let a tile contain fractions $p_m$ of pixels with orientation $\theta_m$ (modulo $\pi/2$). Then $\psifour=\sum_m p_m e^{4i\theta_m}$. For a single sheet the two fibre families have $\theta_2=\theta_1+\pi/2$, so $e^{4i\theta_2}=e^{4i\theta_1}$ and $|\psifour|=1$ regardless of $p_1$. For two sheets with weave axes differing by $\Delta$ and weights $p,1-p$,
+\[
+|\psifour|^{2}=p^{2}+(1-p)^{2}+2p(1-p)\cos4\Delta ,
+\]
+which at $p=\tfrac12$ equals $\cos^{2}2\Delta$ and vanishes at $\Delta=45^{\circ}$. By contrast the nematic $|\langle e^{2i\theta}\rangle|$ for a single balanced sheet is $|p_1-p_2|$ and is zero for a perfect weave.
+
+\subsection{AUC as a Mann--Whitney statistic}
+\label{app:auc}
+With $n_+$ positives and $n_-$ negatives and all scores pooled and ranked from 1, let $R_+$ be the sum of the positives' ranks. Each positive's rank counts the positives ranked at or below it plus the negatives ranked below it; summing over positives, $R_+=n_+(n_++1)/2+\#\{(i,j):q_i>q_j\}$. Dividing by $n_+n_-$ gives \cref{eq:auc}. Ties are ignored, which is harmless for continuous network outputs.
+
+\subsection{Block bootstrap}
+\label{app:bootstrap}
+Partition the $256\times256$ comparison grid into $B=256$ cells of $16\times16$ pixels. For $b=1,\dots,2000$: draw $B$ cells with replacement, concatenate their pixels, compute $\corr(q_S,t)$ and $\corr(q_6,t)$ on the concatenation, and record the difference. The 2.5th and 97.5th percentiles of the recorded differences are the reported interval. The cell size is chosen larger than the correlation length of the ink maps (letter strokes are a few team-map pixels wide) so that resampled cells are approximately exchangeable; the same cells are used for both windows so that the interval is for the paired difference.

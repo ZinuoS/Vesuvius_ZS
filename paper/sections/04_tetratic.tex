@@ -1,0 +1,60 @@
+\section{Tetratic order of the weave and its disclinations}
+\label{sec:tetratic}
+
+\subsection{Physical motivation}
+If intrinsic geometry cannot see a sheet switch, the texture painted on the surface can. Papyrus is a laminate of two layers of parallel strips laid at right angles, so a flattened render of a single sheet shows two orthogonal fibre families with a well-defined local axis. An orientation field that is invariant under rotation by $\pi/2$ is, in the language of soft matter, a tetratic: the four-fold cousin of the nematic phase of a liquid crystal, whose director is invariant under $\pi$ \cite{degennes}. The natural order parameter is therefore not the nematic $\langle e^{2i\theta}\rangle$ but
+\begin{equation}
+\psifour=\bigl\langle e^{4i\theta}\bigr\rangle ,
+\label{eq:psi4}
+\end{equation}
+and the natural defects are disclinations of the director field with charge quantised in units of $1/4$. The claim to be tested: a legible sheet has $|\psifour|$ near one; where the mesh crosses between windings, or renders a blend of two sheets, the orientation field loses long-range order and $|\psifour|$ collapses, even though the local texture may remain anisotropic.
+
+\subsection{Orientation field from the structure tensor}
+Let $I(\mathbf{x})$ be the middle layer of a render. Smooth and differentiate, $\mathbf{g}=\nabla(G_{\sigma}*I)$ with $\sigma=2$ px, and form the structure tensor by averaging the outer product over a window $w=6$ px,
+\begin{equation}
+\mathbf{J}=G_{w}*\bigl(\mathbf{g}\mathbf{g}^{\mathsf T}\bigr)=
+\begin{pmatrix}J_{xx}&J_{xy}\\ J_{xy}&J_{yy}\end{pmatrix}.
+\label{eq:J}
+\end{equation}
+Its eigenvalues and the orientation of the dominant gradient are
+\begin{equation}
+\lambda_{\pm}=\tfrac12\bigl(J_{xx}+J_{yy}\bigr)\pm\tfrac12\sqrt{(J_{xx}-J_{yy})^{2}+4J_{xy}^{2}},
+\qquad
+\theta=\tfrac12\atantwo\bigl(2J_{xy},\,J_{xx}-J_{yy}\bigr),
+\label{eq:theta}
+\end{equation}
+with $\theta$ defined modulo $\pi$. The standard measure of local anisotropy is the coherence
+\begin{equation}
+c=\frac{\lambda_{+}-\lambda_{-}}{\lambda_{+}+\lambda_{-}}
+=\frac{\sqrt{(J_{xx}-J_{yy})^{2}+4J_{xy}^{2}}}{J_{xx}+J_{yy}}\in[0,1].
+\label{eq:coherence}
+\end{equation}
+Two remarks fix the symmetry. First, $\theta$ in \cref{eq:theta} is the gradient direction, perpendicular to the fibre; but $e^{4i(\theta+\pi/2)}=e^{4i\theta}$, so the tetratic order parameter does not care, and neither does it care which of the two fibre families dominates a pixel. Second, a nematic parameter would fail here for a structural reason: a balanced weave with fractions $p$ and $1-p$ of pixels on the two families has $|\langle e^{2i\theta}\rangle|=|2p-1|$, which vanishes at $p=\tfrac12$ for a perfectly ordered sheet, whereas $|\psifour|=1$ for any $p$.
+
+\subsection{Order parameter and charge per tile}
+Divide the render into $T\times T$ tiles ($T=128$ px, about \SI{1.1}{mm}) and keep tiles that are at least 95\,\% inside the valid render. Per tile,
+\begin{equation}
+\psifour=\frac{1}{T^{2}}\sum_{\mathbf{x}\in\text{tile}}e^{4i\theta(\mathbf{x})},\qquad
+\bar c=\frac{1}{T^{2}}\sum_{\mathbf{x}\in\text{tile}}c(\mathbf{x}).
+\end{equation}
+$|\psifour|$ measures whether the orientations across a millimetre agree; $\bar c$ measures whether each pixel is locally striped. They are different quantities. A polydomain texture, or a render in which two sheets with different weave axes overlap, is locally anisotropic and globally disordered: high $\bar c$, low $|\psifour|$. For two overlapping sheets with axes differing by $\Delta$ and equal weight, $|\psifour|=\bigl|\tfrac12(1+e^{4i\Delta})\bigr|=|\cos2\Delta|$, which vanishes at $\Delta=45^{\circ}$.
+
+The disclination charge enclosed by a tile is the winding of the tetratic phase around its boundary. Write $z_4(\mathbf{x})=e^{4i\theta(\mathbf{x})}$ and let $\phi=\arg\bigl(G_{16}*z_4\bigr)$ be the phase of the complex field smoothed over 16 px (smoothing the complex field, not the angle, avoids branch cuts). Then
+\begin{equation}
+q=\frac{1}{2\pi}\oint_{\partial\text{tile}}\mathrm{d}\phi\in\mathbb Z ,
+\label{eq:charge}
+\end{equation}
+evaluated as the sum of wrapped finite differences of $\phi$ around the tile boundary. Since $\phi=4\theta$ where the field is ordered, an integer winding $q$ of $\phi$ is a winding $q/4$ of the director: the charge is quantised in quarters, as a tetratic requires. The phase is undefined where $|G_{16}*z_4|\to0$, so $q$ is counted only on tiles with $|\psifour|\ge0.25$.
+
+\subsection{Results}
+\code{tetratic.py} runs in a few seconds per render. The findings, in order of confidence:
+\begin{enumerate}
+\item \textbf{Order separates the switch.} In patch 3532, tiles over the lower-left sheet switch have $|\psifour|$ between 0.1 and 0.3; tiles over clean weave have 0.6 to 0.8. Over the same tiles the coherence $\bar c$ is flat at \numrange{0.4}{0.6}. Local anisotropy is not order, and the standard check would not have flagged the region.
+\item \textbf{Raw winding is noise; regularised winding is usable.} Counting the winding of the unsmoothed $4\theta$ marks 70--85\,\% of tiles as charged. With the smoothed phase and the $|\psifour|$ floor the fraction of charged tiles is 3.9\,\% (5452), 12.7\,\% (3532), 32\,\% (4144) and 19--23\,\% (the two w087 control crops). The ordering is the ordering of visible damage and sheet mixing.
+\item \textbf{Medians across tiles.} $|\psifour|$: 3532 0.52, 5452 0.46, the team's 1447 patch 0.39, the 4144 text site 0.32, w087 crops 0.30 and 0.30. The overall median of 3532 is high because most of it is clean; the switch is a local minimum, which is the point of a per-tile map.
+\item \textbf{Not an ink signature.} $\corr(|\psifour|,\text{team ink map})=+0.05$ on both w087 crops, with bootstrap intervals that include zero. Order measures the weave, not the writing.
+\end{enumerate}
+
+\paragraph{Caveats.} $|\psifour|$ is a weave-legibility score. It falls where the sheet is damaged (the 4144 site), not only where the mesh switches sheet, and its absolute level differs between scans (the w087 control was scanned at \SI{7.91}{\um}, 1447 at \SI{8.64}{\um}), so it should be used as a within-render map and contrast, not as a universal threshold. A switch that preserves the weave axis to within a few degrees would also preserve $|\psifour|$; the disclination map and the normal-profile test of \cref{sec:discussion} are the complements.
+
+\todo{figure: four-panel \code{\_tetratic.png} for 3532 (mid layer, $|\psifour|$, $q$, $\bar c$); copy from \code{renders/} to \code{docs/figures/}}

@@ -1,0 +1,58 @@
+\section{Ink detection: calibration, depth window and a failed lock-in}
+\label{sec:ink}
+
+\subsection{Inference on Apple Silicon}
+The released \code{ink\_9um} checkpoint (\code{hybrid\_3d2d-seed42/step-075000}) runs on the Metal backend from a virtual environment containing only the packages that \code{vesuvius.ink\_detection.inference} imports (PyTorch 2.14, no nnU-Net, no MONAI, no compiled extensions). A 28-layer render of a \SI{1.4}{mm}-scale patch takes \SIrange{86}{138}{s} per direction. On the PHerc1447 patches 5452 and 3532, and on the three patches at the announced text site around $(4144,2742,12557)$, the model returns blobs with no strokes and no rows in either direction. The organisers reported about ten letters at that site on 24 September 2026 with a new \SI{9}{\um} recipe and a fine-tuned model, so the released weights, not the pipeline, are the limiting factor on this scroll.
+
+\subsection{Positive control and scoring}
+To separate pipeline errors from model weakness, the same renderer flags and the same inference script were run on PHerc.172 segment w087, for which the team has published an ink map at $1/8$ scale. Two $2048\times2048$ crops at render origin $(5440,5120)$ and $(1200,9200)$ were rendered from the published mesh (\SI{7.91}{\um} volume).
+
+A prediction $p$ at full resolution is compared with the team map $t$ on the team's grid by block-averaging, $q_{ab}=\frac1{64}\sum_{8a\le i<8a+8}\sum_{8b\le j<8b+8}p_{ij}$. Two scores are reported:
+\begin{align}
+\corr &=\frac{\sum(q-\bar q)(t-\bar t)}{\sqrt{\sum(q-\bar q)^{2}\sum(t-\bar t)^{2}}},\label{eq:corr}\\
+\AUC &=\frac{1}{n_{+}n_{-}}\sum_{i\in+}\sum_{j\in-}\mathbf 1[q_i>q_j]
+=\frac{R_{+}-n_{+}(n_{+}+1)/2}{n_{+}n_{-}},\label{eq:auc}
+\end{align}
+where the positive set is the top 15\,\% of the team map, $R_{+}$ is the rank sum of the predictions on that set, and the second form is the Mann--Whitney identity used in \code{bench172.py}. The AUC is the probability that a randomly chosen ink pixel is scored above a randomly chosen non-ink pixel; 0.5 is chance.
+
+\Cref{tab:control} gives the control numbers. The pipeline is sound: the reverse direction (the inked face) correlates at \numrange{0.36}{0.40} with the team map on the first crop; the forward direction is near zero, as it should be.
+
+\begin{table}[t]
+\centering\small
+\caption{Positive control on PHerc.172 w087 against the team's published ink map. Pearson correlation and AUC per \cref{eq:corr,eq:auc}; rev is the inked side. Hecate ran at stride 64; the fair stride-32 comparison is pending (\cref{sec:discussion}).}
+\label{tab:control}
+\begin{tabular}{@{}llcccc@{}}
+\toprule
+& & \multicolumn{2}{c}{crop $(5440,5120)$} & \multicolumn{2}{c}{crop $(1200,9200)$}\\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}
+model & window & corr rev / fwd & AUC rev / fwd & corr rev / fwd & AUC rev\\
+\midrule
+ink\_9um & S6 (default) & 0.363 / 0.053 & 0.727 / 0.566 & 0.240 / 0.021 & --\\
+ink\_9um & S2 & 0.398 / 0.102 & 0.746 / -- & 0.266 / $-0.007$ & 0.688\\
+Hecate \SI{9.6}{\um} & stride 64 & 0.240 / 0.102 & 0.706 / 0.602 & not run & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Depth-window scan with block bootstrap}
+The model consumes 17 of the 28 rendered layers. Let $S$ be the index of the first layer; the default is $S=6$, the centred window. Sliding $S$ through $\{0,2,4,6,8,10,11\}$ on the first crop (reverse direction) gives correlations
+\[
+0.341,\ 0.398,\ 0.391,\ 0.363,\ 0.370,\ 0.286,\ 0.248 .
+\]
+Differences of a few hundredths need an uncertainty. Pixels of an ink map are not independent, so an ordinary bootstrap would understate the variance. We use a block bootstrap: partition the $256\times256$ downsampled maps into $16\times16$ cells, resample cells with replacement 2000 times, recompute $\corr(q_S,t)-\corr(q_6,t)$ on each resample, and take the central 95\,\% interval. The results:
+\begin{center}\small
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+$S$ & 0 & 2 & 4 & 8 & 10 & 11\\
+\midrule
+$\Delta\corr$ vs $S=6$ & $-0.021$ & $+0.036$ & $+0.028$ & $+0.007$ & $-0.077$ & $-0.115$\\
+95\,\% CI & & $[-0.001,+0.073]$ & & & $[-0.125,-0.032]$ & $[-0.171,-0.059]$\\
+\bottomrule
+\end{tabular}
+\end{center}
+On the second crop, $S=2,4,6$ give $0.266,0.251,0.240$ and $\Delta_{2-6}=+0.026\ [-0.023,+0.073]$; pooling the two crops, $\Delta_{2-6}=+0.031\ [+0.000,+0.062]$.
+
+\paragraph{Reading.} Three statements of different strength. (i) Moving the window away from the inked face ($S\ge10$) destroys the signal, and the interval excludes zero with room to spare: the ink is near the surface, as expected. (ii) Shifting the window two layers towards the inked face ($S=2$) gains about $0.03$ in correlation, replicated in direction on both crops, with a pooled interval that just excludes zero. It was adopted as the default for this scroll. (iii) The wrong side is dead at all depths, so the forward direction cannot be rescued by re-centring.
+
+\subsection{A lock-in detector that did not work}
+Because the forward and reverse predictions are computed from the same slab, structure that appears in both is texture rather than ink: a lock-in amplifier rejects what is common to signal and reference. Define z-scored maps $\tilde r,\tilde f,\tilde t$ and fit $k$ on one crop by least squares on the residual, $\tilde t-\tilde r\approx -k\tilde f$, then test $L=\tilde r-k\tilde f$ on the other crop. Fitted $k$ ranged over \numrange{0.04}{0.17}; $\corr(L,t)$ changed by less than $0.01$ relative to $\corr(\tilde r,t)$ in all four fit/test combinations. A harder two-sided veto, setting $L$ to its minimum wherever both $\tilde f>1$ and $\tilde r>1$, \emph{hurt}: $0.398\to0.312$. The forward map carries a weak copy of the ink (its AUC of 0.566 is above chance), so vetoing on it removes signal. One-sidedness of the ink is a global property of the two maps, not a pixel-wise one, and a pixel-wise reference subtraction has nothing to subtract. Dead, and recorded so that it is not tried again.
